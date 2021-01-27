@@ -57,18 +57,11 @@ this.checkBox.setBounds(i*this.size1+100, j*this.size2, size1, size2);
 public void play() throws UnsupportedAudioFileException { //plays the sound of the key
 	if(this.checkBox.isSelected()) {
     try {
-    if(clip.isOpen()) {
-    	//if the sound has already been played
-    	clip.stop(); 
-        clip.close(); 
-        resetAudioStream(); 
-        clip.start();
-   
-    }else {
-    	//if the sound hasn't been played
+  
+    
     	clip.open(audioInputStream);
         clip.start();
-    }
+    
 	} catch (LineUnavailableException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
