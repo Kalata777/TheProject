@@ -20,7 +20,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip; 
 import javax.sound.sampled.LineUnavailableException; 
 import javax.sound.sampled.UnsupportedAudioFileException; 
-public class KeyDone extends JPanel {
+public class Key extends JPanel {
 Clip clip; //controls the .wav file
  AudioInputStream audioInputStream; //the clip is getting the .wav through it
 boolean willPlay;//if the key is supposed to play its sound
@@ -30,13 +30,13 @@ static int size2=30;//size for y for the checkbox
 
 JCheckBox checkBox = new JCheckBox(""); 
 
-public Klavish( String str,int i,int j){
+public Key( String str,int i,int j){
 this.checkBox.setBounds(i*this.size1+100, j*this.size2, size1, size2);
 	this.willPlay=willPlay;
 	this.File=str;//name of the file
 //the try and catches are for checking if there's a problem with getting the .wav files 
 	try {
-		audioInputStream =    AudioSystem.getAudioInputStream(KeyDone.class.getResource(this.File));
+		audioInputStream =    AudioSystem.getAudioInputStream(Klavish.class.getResource(this.File));
 	//getting the file through audioInputStream
 		try {
 			clip = AudioSystem.getClip();
@@ -53,7 +53,7 @@ this.checkBox.setBounds(i*this.size1+100, j*this.size2, size1, size2);
 		e.printStackTrace();
 	} 
 }
-public void kalata() throws UnsupportedAudioFileException, IOException, 
+public void resetAudioStream() throws UnsupportedAudioFileException, IOException, 
 LineUnavailableException  
 {  //it is used for restarting a sound once it has been opened
 audioInputStream =  AudioSystem.getAudioInputStream(Klavish.class.getResource(this.File)); 
@@ -68,7 +68,7 @@ public void play() throws UnsupportedAudioFileException { //plays the sound of t
     	//if the sound has already been played
     	clip.stop(); 
         clip.close(); 
-       kalata(); 
+        resetAudioStream(); 
         clip.start();
    
     }else {
@@ -87,3 +87,4 @@ public void play() throws UnsupportedAudioFileException { //plays the sound of t
 }
 
 }
+
